@@ -39,6 +39,19 @@ class UserServiceImpl implements UserService, UserProvider {
         }
     }
 
+    @Override
+    public List<User> searchUsersByPartialEmail(String email) {
+        return userRepository.searchByPartialEmail(email);
+    }
+
+    @Override
+    public User updateUser(final User user) {
+        if (user.getId() == null) {
+            throw new IllegalArgumentException("No user id found");
+        }
+        return userRepository.save(user);
+    }
+
 
     @Override
     public Optional<User> getUser(final Long userId) {

@@ -23,4 +23,10 @@ interface UserRepository extends JpaRepository<User, Long> {
                         .findFirst();
     }
     List<User> findByBirthdateLessThanEqual(LocalDate date);
+
+    default List<User> searchByPartialEmail(String email) {
+        return findAll().stream()
+                .filter(user -> user.getEmail().toLowerCase().contains(email.toLowerCase()))
+                .toList();
+    }
 }
