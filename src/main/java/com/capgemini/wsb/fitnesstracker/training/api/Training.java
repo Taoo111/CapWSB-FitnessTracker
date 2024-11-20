@@ -5,6 +5,7 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name = "trainings")
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 public class Training {
@@ -40,6 +42,8 @@ public class Training {
     @Column(name = "average_speed")
     private double averageSpeed;
 
+    @Column(name = "completed", nullable = false)
+    private boolean completed;
     public Training(
             final User user,
             final Date startTime,
